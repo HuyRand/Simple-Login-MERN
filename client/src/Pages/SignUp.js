@@ -20,15 +20,6 @@ export default function SignUp(props) {
         <div className="form-center">
             <form onSubmit={handleSubmit}>
                 <h2 >Sign Up</h2>
-                <div className="Input">
-                    <input
-                    type="text"
-                    className="form-control mt-1"
-                    placeholder="Enter name"
-                    onChange={event => setName(event.target.value)}
-                    required
-                />
-                </div>
 
                 <div className="Input">
                     <input
@@ -46,6 +37,16 @@ export default function SignUp(props) {
                     className="form-control mt-1"
                     placeholder="Enter password"
                     onChange={event => setPassword(event.target.value)}
+                    required
+                />
+                </div>
+
+                <div className="Input">
+                    <input
+                    type="text"
+                    className="form-control mt-1"
+                    placeholder="Enter name"
+                    onChange={event => setName(event.target.value)}
                     required
                 />
                 </div>
