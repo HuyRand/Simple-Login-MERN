@@ -4,36 +4,44 @@ import { Link,useNavigate } from "react-router-dom";
 
 export default function Login(props) {
     
-
+    const navigate = useNavigate();
 
     const [Email,setEmail]=useState('')
     const [Password,setPassword]=useState('')
-
-    function Check()
-    {
-        if (Email === 'admin@1')
-            if(Password ==='123')
-                return true
-        return false
-    }
 
 
     const handleSubmit = async(e)=>
     {
         e.preventDefault();
-        let Authenciated = Check()
-        
-        if (Authenciated)
-        {
-            navigate('/Dashboard')
-        }
-        else
-        {
-            alert("Email or password is incorrect")
-        }
+        (async () => {
+            let incomingdata = await fetch("/verifyAccount",
+            {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    {
+                        Email: Email,
+                        Password:Password,
+                    }
+                )
+            }
+            )
+            .then(res => res.json())
+            .catch(e => e)
+
+            if (incomingdata === 'verified')
+            {
+                navigate('/Dashboard',{ state: { Authenciated:true} })
+    
+            }
+            else if(incomingdata === 'Email or password is incorrect')
+            {
+                alert("Email or password is incorrect")
+            }
+          })();
     }
 
-    const navigate = useNavigate();
+    
     return(
         <div className="form-center" >
             <form onSubmit={handleSubmit}>

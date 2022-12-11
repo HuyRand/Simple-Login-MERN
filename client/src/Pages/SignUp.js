@@ -1,19 +1,52 @@
 import React, { useState } from "react"
 import './Login.css';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function SignUp(props) {
 
+    const navigate = useNavigate();
 
     const [Email,setEmail]=useState('')
     const [Password,setPassword]=useState('')
     const [Name,setName]=useState('')
 
 
+
     const handleSubmit = async(e)=>
     {
         e.preventDefault();
-        console.log(Email,Password,Name)
+        
+        (async () => {
+            let incomingdata = await fetch("/users",
+            {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    {
+                        Email: Email,
+                        Password:Password,
+                        Name:Name
+                    }
+                )
+            }
+            )
+            .then(res => res.json())
+            .catch(e => e)
+
+            if (incomingdata === 'Succeed')
+            {
+            alert("Account created, redirecting back to login page")
+            navigate('/')
+    
+            }
+            else if(incomingdata === 'Email is already used')
+            {
+            alert("Email is already used")
+            }
+          })();
+
+
+        
     }
     
     return(

@@ -1,7 +1,29 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
+import { useNavigate,useLocation } from "react-router-dom";
+export default function Dashboard({ route, navigation }) {
 
-export default function Dashboard() {
+  const navigate = useNavigate();
+  const {state} = useLocation();
+
+
+
+  useEffect(()=>{
+    if(state === null) 
+    {
+      navigate('/')
+    }
+   },[]
+  )
+
+
+  if (state !== null)
+  {
+    const { Authenciated } = state; 
+  }
   return(
-    <h2>Dashboard</h2>
-  );
+      <h2>Dashboard</h2>
+    );
+    
+
+
 }
