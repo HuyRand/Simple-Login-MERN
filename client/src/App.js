@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className='Template'>
-      <BrowserRouter>
+      <BrowserRouter basename='/'>
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="SignUp" element={<SignUp />} />
