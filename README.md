@@ -4,5 +4,5 @@ can perform a simple login to verify user, signup to add new user to mongodb and
  
  
  # Demonstration
- 
- 
+ ![](https://github.com/HuyRand/Simple-Login-MERN/blob/master/2022-12-12%2022-26-41.gif)
+
