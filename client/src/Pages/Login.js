@@ -31,7 +31,7 @@ export default function Login(props) {
 
             if (incomingdata === 'verified')
             {
-                navigate('/Dashboard',{ state: { Authenciated:true} })
+                navigate('/Dashboard',{ state: { email:Email} })
     
             }
             else if(incomingdata === 'Email or password is incorrect')
