@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const { User,Task } = require("./models");
+const { User } = require("./models");
 
 
 const app = express();
@@ -13,6 +13,31 @@ app.get("/users", async (req, res) => {
     const allUsers = await User.find();
     return res.status(200).json(allUsers);
 });
+
+// get user from login -> dashboard
+app.get("/user/:email", async (req, res) => {
+    const  findEmail   = req.params.email;
+    const user = await User.find({Email:findEmail});
+    return res.status(200).json(user);
+});
+
+// Update user
+app.put("/UpdateUser",async(req,res) =>{
+    let email = req.body.Email
+    let password = req.body.Password
+    let name = req.body.Name
+    let address = req.body.Address
+    let dob = req.body.DoB
+    try{
+        const FindAndUpdate= await User.findOneAndUpdate({Email:email},{$set:{Password:password,Name:name,Address:address,DoB:dob}},{new:true})
+        return res.status(200).json('updated')
+    }
+    catch(err)
+    {
+        return  res.status(400).json('Server Error');
+    }
+}
+);
 
 // verify - login => return email and password from db
 app.post("/verifyAccount", async (req, res) => {
@@ -31,6 +56,7 @@ app.post("/verifyAccount", async (req, res) => {
 });
 
 
+//sign up
 app.post("/users",  async(req, res) => {
 
     //Check if email has already been used

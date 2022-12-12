@@ -9,6 +9,8 @@ export default function SignUp(props) {
     const [Email,setEmail]=useState('')
     const [Password,setPassword]=useState('')
     const [Name,setName]=useState('')
+    const [Address,setAddress]=useState('')
+    const [DoB,setDoB]=useState('')
 
 
 
@@ -25,7 +27,9 @@ export default function SignUp(props) {
                     {
                         Email: Email,
                         Password:Password,
-                        Name:Name
+                        Name:Name,
+                        Address:Address,
+                        DoB:DoB,
                     }
                 )
             }
@@ -80,7 +84,26 @@ export default function SignUp(props) {
                     className="form-control mt-1"
                     placeholder="Enter name"
                     onChange={event => setName(event.target.value)}
-                    required
+                />
+                </div>
+
+                <div className="Input">
+                    <input
+                    type="text"
+                    className="form-control mt-1"
+                    placeholder="Enter Address"
+                    onChange={event => setAddress(event.target.value)}
+                    
+                />
+                </div>
+
+                <div className="Input">
+                    <input
+                    type="date"
+                    className="form-control mt-1"
+                    //placeholder="Enter name"
+                    onChange={event => setDoB(event.target.value)}
+                    
                 />
                 </div>
 
